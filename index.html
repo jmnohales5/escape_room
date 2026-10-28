@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Llave del Calabozo · Escape Room retro</title>
+  <meta name="description" content="Escape room medieval en pixel art: encuentra la llave, supera las pruebas y escapa del laberinto.">
+  <meta name="theme-color" content="#0b0814">
+  <link rel="icon" href="assets/key.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <main class="cabinet" id="cabinet">
+
+    <!-- Status bar: lives, key, trials, clock, music -->
+    <header class="hud" aria-label="Estado de la partida">
+      <div class="hud-item" id="hearts" role="img" aria-label="Vidas: 3"></div>
+      <div class="hud-item" id="keyslot" title="Llave">
+        <img src="assets/key.svg" alt="" width="32" height="32">
+        <span id="keytext">SIN LLAVE</span>
+      </div>
+      <div class="hud-item">PRUEBAS <span id="trials">0/2</span></div>
+      <div class="hud-item" id="clock">00:00</div>
+      <button class="btn small" id="mute" type="button" aria-pressed="true">MÚSICA: SÍ</button>
+    </header>
+
+    <!-- Game screen: canvas + overlays -->
+    <div class="screen" id="screen">
+      <canvas id="game" width="304" height="240"
+              aria-label="Mapa del calabozo. Mueve al guerrero con las flechas del teclado o con WASD."></canvas>
+      <div id="toast" role="status" aria-live="polite"></div>
+
+      <section class="overlay" id="title" aria-labelledby="title-h">
+        <img class="title-hero" src="assets/hero_down_0.svg" alt="" width="96" height="96">
+        <h1 id="title-h">LA LLAVE<br>DEL CALABOZO</h1>
+        <p class="lead">Un guerrero. Un laberinto.<br>Una sola salida.</p>
+        <ul class="howto">
+          <li>FLECHAS o WASD: moverte</li>
+          <li>Choca con las puertas para probar tu ingenio</li>
+          <li>Esquiva esqueletos y pinchos</li>
+          <li>Encuentra la llave y sal</li>
+        </ul>
+        <button class="btn" id="start" type="button">▶ EMPEZAR</button>
+        <p class="blink small-text">o pulsa ENTER</p>
+      </section>
+
+      <section class="overlay hidden" id="dialog" role="dialog" aria-modal="true" aria-labelledby="dlg-title">
+        <div class="panel">
+          <h2 id="dlg-title"></h2>
+          <p id="dlg-text"></p>
+          <div id="dlg-body"></div>
+          <p class="small-text hint" id="dlg-hint"></p>
+        </div>
+      </section>
+
+      <section class="overlay hidden" id="end" aria-labelledby="end-h">
+        <h2 id="end-h"></h2>
+        <p id="end-text" class="lead"></p>
+        <button class="btn" id="again" type="button">▶ OTRA VEZ</button>
+      </section>
+    </div>
+
+    <!-- On-screen pad for touch devices -->
+    <div class="dpad" aria-label="Controles táctiles">
+      <button type="button" data-dir="up" aria-label="Arriba">▲</button>
+      <button type="button" data-dir="left" aria-label="Izquierda">◀</button>
+      <button type="button" data-dir="down" aria-label="Abajo">▼</button>
+      <button type="button" data-dir="right" aria-label="Derecha">▶</button>
+    </div>
+
+    <footer class="foot">FLECHAS / WASD mover · M música · ESC cerrar prueba</footer>
+  </main>
+
+  <script src="js/audio.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>
